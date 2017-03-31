@@ -27,7 +27,7 @@ class CreateCentersTable extends Migration
             $table->integer('service_id')->unsigned();
             $table->foreign('service_id')->references('id')->on('list_services');
             $table->integer('academic_id')->unsigned();
-            $table->foreign('academic_id')->references('id')->on('list_academic_level');
+            $table->foreign('academic_id')->references('id')->on('list_academic_levels');
             $table->string('special_service'); 
             $table->string('web_page');
             $table->string('logo');

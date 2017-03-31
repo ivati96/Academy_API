@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateListPlacesTable extends Migration
+class CreateListWorkstationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateListPlacesTable extends Migration
      */
     public function up()
     {
-        Schema::create('list_places', function (Blueprint $table) {
+        Schema::create('list_workstations', function (Blueprint $table) {
             $table->increments('id');
             $table->string('description')->unique();
             $table->string('created_by')->nullable();
@@ -31,6 +31,6 @@ class CreateListPlacesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('list_places');
+        Schema::dropIfExists('list_workstations');
     }
 }

@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Laravel</title>
 
         <!-- Fonts -->
@@ -83,13 +83,51 @@
                 </div>
 
                 <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                    <a href="{{ url('api/list/country') }}">country</a>
+                    <a href="{{ url('api/list/department') }}">department</a>
+                    <a href="{{ url('api/list/municipality') }}">municipality</a>
+                    <a href="{{ url('api/list/area') }}">area</a>
+                    <a href="{{ url('api/list/service') }}">service</a>
+                    <a href="{{ url('api/list/identification') }}">identification</a>
+                    <a href="{{ url('api/list/sex') }}">sex</a>
+                    <a href="{{ url('api/list/nationality') }}">nationality</a>
+                    <a href="{{ url('api/list/profession') }}">profession</a>
+                    <a href="{{ url('api/list/workstation') }}">workstation</a>
+                    <a href="{{ url('api/list/postal_code') }}">postal_code</a>
+                    <a href="{{ url('api/list/academic_level') }}">academic_level</a>
+                    <button id="publication">actualizar</button>
                 </div>
+
             </div>
         </div>
     </body>
 </html>
+<script>
+    window.Laravel = {!! json_encode([
+        'csrfToken' => csrf_token(),
+    ]) !!};
+</script>
+
+<script src="{{ asset('js/jquery-3.1.1.js') }}"></script>
+
+<script>
+     $(document).ready(function(){
+        $("#publication").click(function(){
+            $.ajaxSetup({
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                url: 'localhost:81/Academy_API/public/api/list/sex/1',
+                type: "PUT",
+                dataType: 'json',
+            });
+
+            $.ajax({
+                data: { 'description': 'Masculino'},
+                success: function(data){
+                    if(data.status == 'success'){
+                        alert(data.msg);
+                    }
+                }
+            });
+        });    
+    });
+</script>
